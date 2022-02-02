@@ -4,22 +4,22 @@ import java.util.List;
 public class Student {
   private int rating;
   private String name;
-  private static int count;
-  private int id;
 
   // implement Student class according to the instructions provided in the README.md file
-  private static List<Student> students = new ArrayList<>();
+  private final static List<Student> students = new ArrayList<>();
+  private static int count;
+  private final int idNum;
 
   // initialize name
   public Student(String name) {
     this.name = name;
     students.add(this);
-    id = ++count; // to differ student with same name
+    idNum = ++count; // to differ student with same name
   }
 
   public Student() {
     this.name = "Unknown"; // for example, initialize name
-    id = ++count; // to differ student with same name
+    idNum = ++count; // to differ student with same name
     students.add(this);
   }
 
@@ -87,7 +87,7 @@ public class Student {
   // return String with name and rating of this student
   @Override
   public String toString() {
-    return this.id + " " + this.name + " -> " + this.rating;
+    return String.format("Student [idNum = %d; name = %s; rating = %d]", idNum, name, rating);
   }
 
   public static void main(String[] args) {
@@ -102,15 +102,15 @@ public class Student {
     s3.setName("Ivan");
     s3.setRating(5);
     // and input information about them
-    System.out.println("First student  : " + s1);
-    System.out.println("Second student : " + s2);
-    System.out.println("Third student  : " + s3);
+    System.out.println(s1);
+    System.out.println(s2);
+    System.out.println(s3);
     // Display the average rating of all students.
-    System.out.println("Avarage rating is : " + Student.getAvgRating());
+    System.out.println("Average rating is : " + Student.getAvgRating());
     // Change the rating of any student. Display the new average rating.
     String msg = String.format("Set new rating %s for %s", newRate, s2.getName());
     System.out.println(msg);
     s2.setRating(newRate);
-    System.out.println("Avarage rating is : " + Student.getAvgRating());
+    System.out.println("Average rating is : " + Student.getAvgRating());
   }
 }
